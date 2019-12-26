@@ -15,7 +15,13 @@
 
   -#for later, add thanked attribute...boolean?
 
-
+-------
+login
+  -login in page and route
+  -form for log in page
+  -post route
+  -authenticate and redirect
 -------
 
-need to add to config.ru:  use Rack::MethodOverride 
+need to add to config.ru:  use Rack::MethodOverride
+flash messages
