@@ -10,7 +10,12 @@
 
   -#for later, add date attribute to sort?
 
-3. Gifts
+3. Gifts (need occasion_id)
   -Form: Name, giver,  type (category), description, thanked
 
   -#for later, add thanked attribute...boolean?
+
+
+-------
+
+need to add to config.ru:  use Rack::MethodOverride 
