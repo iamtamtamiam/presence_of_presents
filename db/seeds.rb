@@ -3,9 +3,9 @@ donna = User.create(username: "d.onna", password: "josie")
 allison = User.create(username: "a.llison", password: "olivia")
 
 
-christmas = Occassion.create(title: "Christmas 2019", user_id: donna.id)
-thanksgiving = Occassion.create(title: "Thanksgiving 2019", user_id: donna.id)
-birthday = Occassion.create(title: "Birthday 2017", user_id: allison.id)
+christmas = Occasion.create(title: "Christmas 2019", user_id: donna.id)
+thanksgiving = Occasion.create(title: "Thanksgiving 2019", user_id: donna.id)
+birthday = Occasion.create(title: "Birthday 2017", user_id: allison.id)
 
 Gift.create(name: "contigo bottle", giver: "tam", category: "household", description: "really nice purple bottle with glass thermal insulator and pop open cap with double seal.", occasion_id: christmas.id)
 Gift.create(name: "wine glass", giver: "kristen", category: "household", description: "wine glass with printed decorations. Came with a very nice red case topped with bow.", occasion_id: christmas.id)
