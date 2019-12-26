@@ -1,0 +1,7 @@
+Occasion's index page
+
+<%@occasions.each do |occasion|%>
+  <li>
+    <a href="/occasions/<%=occasion.id%>"><%=occasion.title%></a>
+  </li>
+<%end%>
