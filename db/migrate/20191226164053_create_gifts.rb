@@ -5,6 +5,7 @@ class CreateGifts < ActiveRecord::Migration
       t.string :giver
       t.string :category
       t.text :description
+      t.integer :occasion_id
     end
   end
 end
