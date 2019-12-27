@@ -33,6 +33,7 @@ class OccasionController < ApplicationController
       else
       ##need flash message "cant edit"
         redirect :"occasions/#{@occasion.id}"
+        # :"users/#{current_user.id}"
       end
     else
       #if not logged in,
@@ -42,9 +43,15 @@ class OccasionController < ApplicationController
   end
 
   patch '/occasions/:id' do
-      @occasion = Occasion.find(params[:id])
-      @occasion.update(title: params[:title])
-      redirect "/occasions/#{@occasion.id}"
+    if logged_in?
+      if @occasion = Occasion.find(params[:id]) && !params[:title].empty?
+        @occasion.update(title: params[:title])
+        redirect "/occasions/#{@occasion.id}"
+      else
+        redirect :"occasions/#{@occasion.id}"
+      end
+      redirect "/"
+    end
   end
 
   delete '/occasions/:id' do

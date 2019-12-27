@@ -1,10 +1,15 @@
 Occasion's index page
 
-<%@occasions.each do |occasion|%>
-  <li>
-    <a href="/occasions/<%=occasion.id%>"><%=occasion.title%></a>
-  </li>
-<%end%>
+
+
+  <%@occasions.each do |occasion|%>
+    <li>
+      <a href="/occasions/<%=occasion.id%>"><%=occasion.title%></a>
+    </li>
+  <%end%>
+
+
 
 
 #back to users home page
+<a href="/users/#{current_user.id}">NOT WORKING Back to My Home Page</a>
