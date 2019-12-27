@@ -1,7 +1,7 @@
 Edit <%=@occasion.title%>
 
 <form action="/occasions/<%=@occasion.id%>" method="POST">
-  <label for="title">New Title:</label><input type="text" name="username" value="<%=@occasion.title%>">
-
+  <input type="hidden" name="_method" value="patch">
+  <label for="title">New Title:</label><input type="text" name="title" value="<%=@occasion.title%>">
   <input type="submit" value="Edit Occasion">
 </form>

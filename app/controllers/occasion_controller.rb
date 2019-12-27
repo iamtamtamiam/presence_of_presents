@@ -25,9 +25,15 @@ class OccasionController < ApplicationController
     erb :'/occasions/show' #showing the wrong title with find_by why???!
   end
 
-  get "/occasions/:id/edit" do
+  get '/occasions/:id/edit' do
     @occasion = Occasion.find(params[:id])
     erb :'/occasions/edit'
+  end
+
+  patch '/occasions/:id' do
+    @occasion = Occasion.find(params[:id])
+    @occasion.update(title: params[:title])
+    redirect "/occasions/#{@occasion.id}"
   end
 
 end
