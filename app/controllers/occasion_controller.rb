@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class OccasionController < ApplicationController
+  use Rack::Flash
 
   get '/occasions' do
     @occasions = Occasion.all
@@ -31,12 +34,13 @@ class OccasionController < ApplicationController
       if @occasion.user == current_user
         erb :'/occasions/edit'
       else
-      ##need flash message "cant edit"
+        flash[:message] = "You are not the authorized user to edit this occasion."
         redirect :"occasions/#{@occasion.id}"
         # :"users/#{current_user.id}"
       end
     else
       #if not logged in,
+      flash[:message] = "You are not logged in. Please log in."
       redirect "/" ##need to add log in/sign up to home page
       ##need flash message "not logged in"
     end
@@ -61,10 +65,11 @@ class OccasionController < ApplicationController
         @occasion.destroy
         redirect '/occasions'
       else
-        ##need flash message "cant delete"
+        flash[:message] = "You are not the authorized user to delete this occasion."
         redirect :"occasions/#{@occasion.id}"
       end
     else
+      flash[:message] = "You are not logged in. Please log in."
       redirect "/"
     end
   end

@@ -1,4 +1,8 @@
-this is <%=@occasion.title%>'s occasion show page
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<br>this is <%=@occasion.title%>'s occasion show page</br>
 
 list gifts
 

@@ -1,4 +1,8 @@
-Welcome! Please enter your username and password to login!
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<br>Welcome! Please enter your username and password to login!</br>
 
 <form action="/login" method="POST">
   <label for="username">Username:</label><input type="text" name="username">

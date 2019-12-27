@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class UserController < ApplicationController
+  use Rack::Flash
 
   get '/login' do
     erb :login
@@ -12,6 +15,7 @@ class UserController < ApplicationController
       redirect "/users/#{@user.id}"
     #redirect to show page (users/:id)
     else
+      flash[:message] = "Login Unsuccessful! Please make sure username/password are correct."
       redirect "/login"
     end
   end
