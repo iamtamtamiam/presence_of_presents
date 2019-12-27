@@ -25,4 +25,9 @@ class OccasionController < ApplicationController
     erb :'/occasions/show' #showing the wrong title with find_by why???!
   end
 
+  get "/occasions/:id/edit" do
+    @occasion = Occasion.find(params[:id])
+    erb :'/occasions/edit'
+  end
+
 end
