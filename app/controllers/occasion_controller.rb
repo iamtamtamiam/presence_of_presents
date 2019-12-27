@@ -5,19 +5,24 @@ class OccasionController < ApplicationController
     erb :'/occasions/index'
   end
 
-  post '/occasions' do
-    if !params[:username].empty?
-      @occasion = Occasion.create(title: params[:title])
-      @occasion.save
-      redirect "/occasions/#{@occasion.id}" #need show page
-    else
-      redirect "/occasions/new"
-    end
-  end
 
   get '/occasions/new' do
     erb :'/occasions/new'
   end
 
+  post '/occasions' do
+    if !params[:title].empty?
+      @occasion = Occasion.create(title: params[:title], user_id: current_user)
+      @occasion.save
+      redirect "/occasions/#{@occasion.id}"
+    else
+      redirect "/occasions/new"
+    end
+  end
+
+  get '/occasions/:id' do
+    @occasion = Occasion.find(params[:id])
+    erb :'/occasions/show' #showing the wrong title with find_by why???!
+  end
 
 end
