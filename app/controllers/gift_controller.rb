@@ -1,4 +1,5 @@
-
+#do i need to add authorization checks?
+#do i need a current_occasions methodS
 class GiftController < ApplicationController
 
   get '/gifts' do
@@ -28,5 +29,19 @@ class GiftController < ApplicationController
     erb :'gifts/show'
   end
 
+  get '/gifts/:id/edit' do
+    @gift = Gift.find(params[:id])
+    erb :'/gifts/edit'
+  end
+
+  patch '/gifts/:id' do #NOT WORKING!!! no update method? no get route?
+    if @gift = Gift.find(params[:id]) && !params[:name].empty?
+      @gift.update(name: params[:name], giver: params[:giver], category: params[:category], description: params[:description])
+      redirect "/gifts/#{@gift.id}"
+    else
+      redirect :"gifts/#{@gift.id}"
+      #add flash message
+    end
+  end
 
 end

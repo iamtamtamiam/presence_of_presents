@@ -53,6 +53,7 @@ class OccasionController < ApplicationController
         @occasion.update(title: params[:title])
         redirect "/occasions/#{@occasion.id}"
       else
+        #add flash message unsuccessful
         redirect :"occasions/#{@occasion.id}"
       end
       redirect "/"

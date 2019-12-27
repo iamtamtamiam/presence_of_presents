@@ -1,0 +1,13 @@
+Edit <%=@gift.name%>
+
+<form action="/gifts/<%=@gift.id%>" method="POST">
+  <input type="hidden" name="_method" value="patch">
+
+  <label for="name">Change Gift Name:</label><input type="text" name="name" value="<%=@gift.name%>">
+  <label for="giver">Change Giver:</label><input type="text" name="giver" value="<%=@gift.giver%>">
+  <label for="category">Change Category of Gift:</label><input type="text" name="category" value="<%=@gift.category%>">
+  <label for="description">Change Gift Description:</label><textarea name="description" value="<%=@gift.description%>"></textarea>
+
+
+  <input type="submit" value="Edit Gift">
+</form>
