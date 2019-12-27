@@ -27,19 +27,39 @@ class OccasionController < ApplicationController
 
   get '/occasions/:id/edit' do
     @occasion = Occasion.find(params[:id])
-    erb :'/occasions/edit'
+    if logged_in?
+      if @occasion.user == current_user
+        erb :'/occasions/edit'
+      else
+      ##need flash message "cant edit"
+        redirect :"occasions/#{@occasion.id}"
+      end
+    else
+      #if not logged in,
+      redirect "/" ##need to add log in/sign up to home page
+      ##need flash message "not logged in"
+    end
   end
 
   patch '/occasions/:id' do
-    @occasion = Occasion.find(params[:id])
-    @occasion.update(title: params[:title])
-    redirect "/occasions/#{@occasion.id}"
+      @occasion = Occasion.find(params[:id])
+      @occasion.update(title: params[:title])
+      redirect "/occasions/#{@occasion.id}"
   end
 
   delete '/occasions/:id' do
     @occasion = Occasion.find(params[:id])
-    @occasion.destroy
-    redirect '/occasions'
+    if logged_in?
+      if @occasion.user == current_user
+        @occasion.destroy
+        redirect '/occasions'
+      else
+        ##need flash message "cant delete"
+        redirect :"occasions/#{@occasion.id}"
+      end
+    else
+      redirect "/"
+    end
   end
 
 end
