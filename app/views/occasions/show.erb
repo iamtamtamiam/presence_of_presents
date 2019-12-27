@@ -2,14 +2,16 @@ this is <%=@occasion.title%>'s occasion show page
 
 list gifts
 
-add edit button and authorization?
+<% if current_user == @occasion.user %>
 
-<a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion</a>
+  <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion</a>
 
 
-<br>Or delete this occasion
+  <br>Or delete this occasion
 
-<form action="/occasions/<%= @occasion.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" name="" value="Delete This Occasion">
+  <form action="/occasions/<%= @occasion.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" name="" value="Delete This Occasion">
   </form>
+
+<%end%>
