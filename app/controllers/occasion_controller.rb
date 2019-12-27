@@ -36,4 +36,10 @@ class OccasionController < ApplicationController
     redirect "/occasions/#{@occasion.id}"
   end
 
+  delete '/occasions/:id' do
+    @occasion = Occasion.find(params[:id])
+    @occasion.destroy
+    redirect '/occasions'
+  end
+
 end

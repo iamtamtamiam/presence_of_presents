@@ -7,4 +7,9 @@ add edit button and authorization?
 <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion</a>
 
 
-<br>delete button 
+<br>Or delete this occasion
+
+<form action="/occasions/<%= @occasion.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="" value="Delete This Occasion">
+  </form>
