@@ -23,7 +23,8 @@ class UserController < ApplicationController
   post '/users' do
     if !params[:username].empty? && !params[:password].empty?
       @user = User.create(:username => params[:username], :password => params[:password])
-      @user.save
+      @user.save #do i need to save?
+      session[:user_id] = @user.id #actually logging them in
       redirect "/users/#{@user.id}"
     else
       redirect "/signup"
@@ -33,6 +34,11 @@ class UserController < ApplicationController
   get '/users/:id' do
     @user = User.find(params[:id])
     erb :'users/show'
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/'
   end
 
 end
