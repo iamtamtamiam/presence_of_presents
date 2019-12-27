@@ -15,7 +15,7 @@ class OccasionController < ApplicationController
 
   post '/occasions' do
     if !params[:title].empty?
-      @occasion = Occasion.create(title: params[:title], user_id: current_user)
+      @occasion = Occasion.create(title: params[:title], user_id: current_user.id)
       @occasion.save
       redirect "/occasions/#{@occasion.id}"
     else
@@ -63,6 +63,7 @@ class OccasionController < ApplicationController
     if logged_in?
       if @occasion.user == current_user
         @occasion.destroy
+        flash[:message] = "Delete Successful!"
         redirect '/occasions'
       else
         flash[:message] = "You are not the authorized user to delete this occasion."

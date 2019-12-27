@@ -1,6 +1,9 @@
-Occasion's index page
 
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
 
+<br>Occasion's index page</br>
 
   <%@occasions.each do |occasion|%>
     <li>
