@@ -3,7 +3,7 @@
   <%= flash[:message] %>
 <% end %>
 
-<br>Occasion's index page</br>
+<br>Occasion index page</br>
 
   <%@occasions.each do |occasion|%>
     <li>
@@ -15,4 +15,4 @@
 
 
 #back to users home page
-<a href="/users/#{current_user.id}">NOT WORKING Back to My Home Page</a>
+<a href="/users/#{@user.id}">NOT WORKING Back to My Home Page</a>

@@ -1,0 +1,8 @@
+
+<br>Gift index page</br>
+
+  <%@gifts.each do |gift|%>
+    <li>
+      <a href="/gifts/<%=gift.id%>"><%=occasion.title%></a>
+    </li>
+  <%end%>

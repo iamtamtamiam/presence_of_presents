@@ -4,7 +4,8 @@ class OccasionController < ApplicationController
   use Rack::Flash
 
   get '/occasions' do
-    @occasions = Occasion.all
+    @user = current_user
+    @occasions = @user.occasions.all
     erb :'/occasions/index'
   end
 
