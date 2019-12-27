@@ -1,5 +1,6 @@
 #do i need to add authorization checks?
 #do i need a current_occasions methodS
+
 class GiftController < ApplicationController
 
   get '/gifts' do
@@ -42,6 +43,13 @@ class GiftController < ApplicationController
       redirect :"gifts/#{@gift.id}"
       #add flash message
     end
+  end
+
+  delete '/gifts/:id' do
+    @gift = Gift.find(params[:id])
+    @gift.destroy
+    #add flash message
+    redirect '/gifts'
   end
 
 end

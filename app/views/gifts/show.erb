@@ -4,3 +4,14 @@
 <label>Giver:</label><%= @gift.giver %></br>
 <label>Category:</label><%= @gift.category %></br>
 <label>Description:</label><%= @gift.description %></br>
+
+
+<a href="/gift/<%=@gift.id%>/edit">Edit this Occasion</a>
+
+
+<br>Or delete this occasion
+
+<form action="/gift/<%= @gift.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="" value="Delete This Gift">
+</form>
