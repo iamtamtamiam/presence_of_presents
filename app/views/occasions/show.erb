@@ -2,7 +2,7 @@
   <%= flash[:message] %>
 <% end %>
 
-<br>this is <%=@occasion.title%>'s occasion show page</br>
+<br>this is <%=@occasion.title%>'s occasion show page  - <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion's Title</a></br>
 
 
 <% if current_user == @occasion.user %>
@@ -11,11 +11,12 @@
     <li><a href="/gifts/<%=gift.id%>"><%=gift.name%></a></li>
   <%end%>
 
-  <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion</a>
+  <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion's Title</a></br>
 
-  <br>Or add a new gift</br><a href="/gifts/new">Add a new gift</a>
+  <br><a href="/gifts/new">Add a new gift</a></br>
 
-  <br>Or delete this occasion
+
+  <br>or
 
   <form action="/occasions/<%= @occasion.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
@@ -23,5 +24,7 @@
   </form>
 
 <%end%>
+
+</br>
 
 <a href="/occasions">Back to All Occasions</a>
