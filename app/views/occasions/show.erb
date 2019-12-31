@@ -4,9 +4,12 @@
 
 <br>this is <%=@occasion.title%>'s occasion show page</br>
 
-list gifts
 
 <% if current_user == @occasion.user %>
+
+  <% @occasion_gifts.each do |gift| %>
+    <li><a href="/gifts/<%=gift.id%>"><%=gift.name%></a></li>
+  <%end%>
 
   <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion</a>
 

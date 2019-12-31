@@ -27,6 +27,7 @@ class GiftController < ApplicationController
 
   get '/gifts/:id' do
     @gift = Gift.find(params[:id])
+    @occasion = @gift.occasion
     erb :'gifts/show'
   end
 
