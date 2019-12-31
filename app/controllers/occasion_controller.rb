@@ -26,8 +26,18 @@ class OccasionController < ApplicationController
 
   get '/occasions/:id' do
     @occasion = Occasion.find(params[:id])
-    @occasion_gifts = @occasion.gifts
-    erb :'/occasions/show' #showing the wrong title with find_by why???!
+    if logged_in?
+      if @occasion.user == current_user
+        @occasion_gifts = @occasion.gifts
+        erb :'/occasions/show' #showing the wrong title with find_by why???!
+      else
+        flash[:message] = "You are not the authorized user to view this occasion."
+        redirect :"/occasions"
+      end
+    else
+      flash[:message] = "You are not logged in. Please log in."
+      redirect "/"
+    end
   end
 
   get '/occasions/:id/edit' do
@@ -49,16 +59,18 @@ class OccasionController < ApplicationController
   end
 
   patch '/occasions/:id' do
-    if logged_in?
-      if @occasion = Occasion.find(params[:id]) && !params[:title].empty?
+    #if logged_in?
+      #if @occasion = Occasion.find(params[:id]) && !params[:title].empty?
+        #binding.pry
+        @occasion = Occasion.find(params[:id])
         @occasion.update(title: params[:title])
         redirect "/occasions/#{@occasion.id}"
-      else
+    #  else
         #add flash message unsuccessful
-        redirect :"occasions/#{@occasion.id}"
-      end
-      redirect "/"
-    end
+        #redirect :"occasions/#{@occasion.id}"
+      #end
+      #redirect "/"
+    #end
   end
 
   delete '/occasions/:id' do
