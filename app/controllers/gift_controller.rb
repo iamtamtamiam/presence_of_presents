@@ -37,11 +37,14 @@ class GiftController < ApplicationController
   end
 
   patch '/gifts/:id' do #NOT WORKING!!! no update method? no get route?
-    if @gift = Gift.find(params[:id]) && !params[:name].empty?
-      @gift.update(name: params[:name], giver: params[:giver], category: params[:category], description: params[:description])
-      redirect "/gifts/#{@gift.id}"
-    else
-      redirect :"gifts/#{@gift.id}"
+    #if @gift = Gift.find(params[:id]) && !params[:name].empty?
+      @gift = Gift.find(params[:id])
+      if !params[:name].empty?
+        @gift.update(name: params[:name], giver: params[:giver], category: params[:category], description: params[:description])
+        redirect "/gifts/#{@gift.id}"
+      else
+    #else
+      redirect :"/gifts/#{@gift.id}"
       #add flash message
     end
   end
