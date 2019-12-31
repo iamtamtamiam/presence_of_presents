@@ -40,7 +40,7 @@ class GiftController < ApplicationController
     #if @gift = Gift.find(params[:id]) && !params[:name].empty?
       @gift = Gift.find(params[:id])
       if !params[:name].empty?
-        @gift.update(name: params[:name], giver: params[:giver], category: params[:category], description: params[:description])
+        @gift.update(name: params[:name], giver: params[:giver], category: params[:category], description: params[:description], occasion_id: params[:occasion_id])
         redirect "/gifts/#{@gift.id}"
       else
     #else
