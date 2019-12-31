@@ -4,6 +4,7 @@
 <% end %>
 
 <br>Occasion index page</br>
+<h3>Click on an occasion to view it or <a href="/occasions/new">add a new occasion</a></h3>
 
   <%@occasions.each do |occasion|%>
     <li>
@@ -13,6 +14,4 @@
 
 
 
-
-#back to users home page
-<a href="/users/#{@user.id}">NOT WORKING Back to My Home Page</a>
+<br><a href="/users/<%=@user.id%>">Back to My Home Page</a></br>

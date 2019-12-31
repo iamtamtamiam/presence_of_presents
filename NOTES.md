@@ -31,3 +31,4 @@ logout
 
 add logout on every page
 homepage layout with login and logout
+users page on every page after?
