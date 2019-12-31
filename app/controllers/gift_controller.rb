@@ -3,9 +3,9 @@
 
 class GiftController < ApplicationController
 
-  get '/gifts' do
+  get '/gifts' do #do i actually need this method?
     @gifts = Gift.all
-    erb :'gifts/index'
+    erb :'/gifts/index'
   end
 
   get '/gifts/new' do
@@ -19,7 +19,7 @@ class GiftController < ApplicationController
       @gift.save
       redirect "/gifts/#{@gift.id}"
     else
-      redirect "/occasions/new"
+      redirect "/gifts/new"
     end
 
   end

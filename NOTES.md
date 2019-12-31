@@ -26,4 +26,8 @@ login
 need to add to config.ru:  use Rack::MethodOverride
 flash messages
 signup - username taken?
-logout 
+logout
+
+
+add logout on every page
+homepage layout with login and logout
