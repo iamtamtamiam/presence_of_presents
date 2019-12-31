@@ -6,5 +6,12 @@ Add a new gift
   <label for="category">Category of Gift:</label><input type="text" name="category">
   <label for="description">Gift Description:</label><textarea name="description"></textarea>
 
+  <label> Which Occasion does this gift belong in? </label>
+   <select name="occasion_id">
+     <% current_user.occasions.each do |occasion| %>
+       <option value=<%=occasion.id %>><%= occasion.title %></option>
+     <% end %>
+   </select>
+
   <input type="submit" value="Create New Gift">
 </form>
