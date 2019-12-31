@@ -6,16 +6,14 @@
 <label>Description:</label><%= @gift.description %></br>
 
 
-<a href="/gifts/<%=@gift.id%>/edit">Edit this Gift</a>
+<br><a href="/gifts/<%=@gift.id%>/edit">Edit this Gift</a></br>
 
-
-<br>Or delete this Gift
+<h4> or </h4><br>
 
 <form action="/gift/<%= @gift.id %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" name="" value="Delete This Gift">
 </form>
 
-back to occasion title needed
 
-<br><a href="/occasions">Back to all occasions</a>
+<br><a href="/occasions/<%=@gift.occasion_id%>">Back to <%=@gift.occasion.title%></a> or <a href="/occasions">Back to All Occasions</a>
