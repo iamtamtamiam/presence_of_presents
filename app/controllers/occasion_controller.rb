@@ -25,7 +25,7 @@ class OccasionController < ApplicationController
   end
 
   get '/occasions/:id' do
-    @occasion = Occasion.find(params[:id])
+    set_occasion_by_id
     if logged_in?
       if @occasion.user == current_user
         @occasion_gifts = @occasion.gifts
@@ -41,7 +41,7 @@ class OccasionController < ApplicationController
   end
 
   get '/occasions/:id/edit' do
-    @occasion = Occasion.find(params[:id])
+    set_occasion_by_id
     if logged_in?
       if @occasion.user == current_user
         erb :'/occasions/edit'
@@ -62,7 +62,7 @@ class OccasionController < ApplicationController
     #if logged_in?
       #if @occasion = Occasion.find(params[:id]) && !params[:title].empty?
         #binding.pry
-        @occasion = Occasion.find(params[:id])
+        set_occasion_by_id
         @occasion.update(title: params[:title])
         redirect "/occasions/#{@occasion.id}"
     #  else
@@ -74,7 +74,7 @@ class OccasionController < ApplicationController
   end
 
   delete '/occasions/:id' do
-    @occasion = Occasion.find(params[:id])
+    set_occasion_by_id
     if logged_in?
       if @occasion.user == current_user
         @occasion.destroy
@@ -88,6 +88,12 @@ class OccasionController < ApplicationController
       flash[:message] = "You are not logged in. Please log in."
       redirect "/"
     end
+  end
+
+  private
+
+  def set_occasion_by_id
+    @occasion = Occasion.find(params[:id])
   end
 
 end
