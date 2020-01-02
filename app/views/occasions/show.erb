@@ -11,9 +11,9 @@
 
 
 <br><br><h3>Occasion Options:</h3></br>
-  <a href="/gifts/new">Add a new gift</a> | <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion's Title</a> | <a href="/occasions">Back to All Occasions</a>
+  <a href="/gifts/new">Add a new gift</a> | <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion's Title</a> | <a href="/occasions">Back to All Occasions</a><br>
 
-  <br>OR<br>
+  <br>OR<br><br>
 
   <form action="/occasions/<%= @occasion.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
