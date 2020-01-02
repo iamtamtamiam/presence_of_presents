@@ -1,19 +1,22 @@
-Edit <%=@gift.name%>
+<h1>Edit <%=@gift.name%></h1>
+<br>
 
 <form action="/gifts/<%=@gift.id%>" method="POST">
   <input type="hidden" name="_method" value="patch">
 
-  <label for="name">Change Gift Name:</label><input type="text" name="name" value="<%=@gift.name%>">
-  <label for="giver">Change Giver:</label><input type="text" name="giver" value="<%=@gift.giver%>">
-  <label for="category">Change Category of Gift:</label><input type="text" name="category" value="<%=@gift.category%>">
-  <label for="description">Change Gift Description:</label><textarea name="description" ><%=@gift.description%></textarea>
+  <label for="name"><b>Change Gift Name: </b></label><input type="text" name="name" value="<%=@gift.name%>">
+  <label for="giver"><b>Change Giver: </b></label><input type="text" name="giver" value="<%=@gift.giver%>">
+  <br><label for="category"><b>Change Category of Gift: </b></label><input type="text" name="category" value="<%=@gift.category%>">
+  <label for="description"><b>Change Gift Description: </b></label><textarea name="description" ><%=@gift.description%></textarea>
 
-  <label> Which Occasion does this gift belong in? </label>
+  <br><br><label><b>Which Occasion does this gift belong in? </b></label>
     <select name="occasion_id">
       <% current_user.occasions.each do |occasion| %>
         <option value=<%=occasion.id %> <%= "selected" if occasion.id==@gift.occasion.id %> ><%= occasion.title %></option>
       <% end %>
     </select>
 
-  <input type="submit" value="Edit Gift">
+  <br><br><input type="submit" value="Edit Gift">
 </form>
+
+<br> <a href="/occasions">Cancel - Go Back to All Occasions</a>
