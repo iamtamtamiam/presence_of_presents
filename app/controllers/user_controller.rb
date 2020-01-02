@@ -15,7 +15,7 @@ class UserController < ApplicationController
       redirect "/users/#{@user.id}"
     #redirect to show page (users/:id)
     else
-      flash[:message] = "Login Unsuccessful! Please make sure username/password are correct."
+      flash[:error] = "Login Unsuccessful! Please make sure username/password are correct."
       redirect "/login"
     end
   end
@@ -31,7 +31,7 @@ class UserController < ApplicationController
       session[:user_id] = @user.id #actually logging them in
       redirect "/users/#{@user.id}"
     else
-      flash[:message] = "Signup Unsuccessful! Please make sure to enter a username and password."
+      flash[:error] = "Signup Unsuccessful! Please make sure to enter a username and password."
       redirect "/signup"
     end
   end

@@ -32,11 +32,11 @@ class OccasionController < ApplicationController
         @occasion_gifts = @occasion.gifts
         erb :'/occasions/show' #showing the wrong title with find_by why???!
       else
-        flash[:message] = "You are not the authorized user to view this occasion."
+        flash[:error] = "You are not the authorized user to view this occasion."
         redirect :"/occasions"
       end
     else
-      flash[:message] = "You are not logged in. Please log in."
+      flash[:error] = "You are not logged in. Please log in."
       redirect "/"
     end
   end
@@ -47,13 +47,13 @@ class OccasionController < ApplicationController
       if @occasion.user == current_user
         erb :'/occasions/edit'
       else
-        flash[:message] = "You are not the authorized user to edit this occasion."
+        flash[:error] = "You are not the authorized user to edit this occasion."
         redirect :"occasions/#{@occasion.id}"
         # :"users/#{current_user.id}"
       end
     else
       #if not logged in,
-      flash[:message] = "You are not logged in. Please log in."
+      flash[:error] = "You are not logged in. Please log in."
       redirect "/" ##need to add log in/sign up to home page
       ##need flash message "not logged in"
     end
@@ -82,11 +82,11 @@ class OccasionController < ApplicationController
         flash[:message] = "Delete Successful!"
         redirect '/occasions'
       else
-        flash[:message] = "You are not the authorized user to delete this occasion."
+        flash[:error] = "You are not the authorized user to delete this occasion."
         redirect :"occasions/#{@occasion.id}"
       end
     else
-      flash[:message] = "You are not logged in. Please log in."
+      flash[:error] = "You are not logged in. Please log in."
       redirect "/"
     end
   end

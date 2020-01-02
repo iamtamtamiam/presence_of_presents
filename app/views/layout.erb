@@ -18,6 +18,9 @@
       <h2><%= flash[:message] %></h2>
     <% end %>
 
+    <% if flash.has?(:error) %>
+      <h2 style="color: red;"><%= flash[:error] %></h2>
+    <% end %>
 
     <div class="wrapper">
 
