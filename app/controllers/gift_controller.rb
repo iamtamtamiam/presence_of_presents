@@ -4,6 +4,7 @@
 class GiftController < ApplicationController
 
   get '/gifts' do #do i actually need this method?
+    @user = current_user
     @gifts = Gift.all
     erb :'/gifts/index'
   end

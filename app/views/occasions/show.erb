@@ -1,6 +1,6 @@
 
 
-<br>this is <%=@occasion.title%>'s occasion show page  - <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion's Title</a></br>
+<br><h2>Occasion: <%=@occasion.title%></h2>
 
 
 <% if current_user == @occasion.user %>
@@ -10,11 +10,10 @@
   <%end%>
 
 
+<br><br><h3>Occasion Options:</h3></br>
+  <a href="/gifts/new">Add a new gift</a> | <a href="/occasions/<%=@occasion.id%>/edit">Edit this Occasion's Title</a> | <a href="/occasions">Back to All Occasions</a>
 
-  <br><a href="/gifts/new">Add a new gift</a></br>
-
-
-  <br>or
+  <br>OR<br>
 
   <form action="/occasions/<%= @occasion.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
@@ -24,5 +23,3 @@
 <%end%>
 
 </br>
-
-<a href="/occasions">Back to All Occasions</a>

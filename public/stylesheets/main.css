@@ -44,8 +44,9 @@
   }
 
   h3 {
+    border-bottom: 1px solid #ccc;
     font-size: 18px;
-    line-height: 36px;
+    line-height: 20px;
   }
 
   p {

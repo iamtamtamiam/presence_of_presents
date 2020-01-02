@@ -1,12 +1,18 @@
 
 <br>Gift index page</br>
 
-Number of reasons to be thankful: <%=@gifts.count%>
+Number of reasons to be thankful:
 
-  <%@gifts.each do |gift|%>
-    <li>
-      <a href="/gifts/<%=gift.id%>"><%=gift.name%></a>
-    </li>
+  <%@user.occasions.each do |o|%>
+      <%@all_gifts = []%>
+      <%@all_gifts << o.gifts%>
+      <%=@all_gifts.count%> <br>
+
+
+
+
+
+
   <%end%>
 
 <br>still showing everyone's gift...not user or occasion specific

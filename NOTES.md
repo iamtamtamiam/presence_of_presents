@@ -33,3 +33,5 @@ add logout on every page
 homepage layout with login and logout
 users page on every page after?
 occasions index page for total count occasions/show
+
+fix gift index page link or take out
