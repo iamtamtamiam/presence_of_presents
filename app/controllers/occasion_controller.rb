@@ -4,7 +4,7 @@ class OccasionController < ApplicationController
   use Rack::Flash
 
   get '/occasions' do
-    #may need authentication
+    #may need authentication here
     @user = current_user
     @occasions = @user.occasions.all
     erb :'/occasions/index'
@@ -27,7 +27,7 @@ class OccasionController < ApplicationController
 
   get '/occasions/:id' do
     set_occasion_by_id
-    if logged_in?
+    redirect_if_not_logged_in
       if @occasion.user == current_user
         @occasion_gifts = @occasion.gifts
         erb :'/occasions/show' #showing the wrong title with find_by why???!
@@ -35,15 +35,11 @@ class OccasionController < ApplicationController
         flash[:error] = "You are not the authorized user to view this occasion."
         redirect :"/occasions"
       end
-    else
-      flash[:error] = "You are not logged in. Please log in."
-      redirect "/"
-    end
   end
 
   get '/occasions/:id/edit' do
     set_occasion_by_id
-    if logged_in?
+    redirect_if_not_logged_in
       if @occasion.user == current_user
         erb :'/occasions/edit'
       else
@@ -51,12 +47,10 @@ class OccasionController < ApplicationController
         redirect :"occasions/#{@occasion.id}"
         # :"users/#{current_user.id}"
       end
-    else
+
       #if not logged in,
-      flash[:error] = "You are not logged in. Please log in."
-      redirect "/" ##need to add log in/sign up to home page
+    ##need to add log in/sign up to home page
       ##need flash message "not logged in"
-    end
   end
 
   patch '/occasions/:id' do
@@ -76,7 +70,7 @@ class OccasionController < ApplicationController
 
   delete '/occasions/:id' do
     set_occasion_by_id
-    if logged_in?
+    redirect_if_not_logged_in
       if @occasion.user == current_user
         @occasion.destroy
         flash[:message] = "Delete Successful!"
@@ -85,10 +79,6 @@ class OccasionController < ApplicationController
         flash[:error] = "You are not the authorized user to delete this occasion."
         redirect :"occasions/#{@occasion.id}"
       end
-    else
-      flash[:error] = "You are not logged in. Please log in."
-      redirect "/"
-    end
   end
 
   private
