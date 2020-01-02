@@ -4,6 +4,7 @@ class OccasionController < ApplicationController
   use Rack::Flash
 
   get '/occasions' do
+    #may need authentication
     @user = current_user
     @occasions = @user.occasions.all
     erb :'/occasions/index'
