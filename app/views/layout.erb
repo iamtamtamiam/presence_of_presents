@@ -22,6 +22,14 @@
       <h2 style="color: red;"><%= flash[:error] %></h2>
     <% end %>
 
+    <% if logged_in? %>
+      <div class="nav">
+        <a href="/users/<%=current_user.id%>">Home</a> |
+        <a href="/occasions">All Occasions</a> |
+        <a href="/logout">Logout</a>
+      </div>
+    <%end%>
+
     <div class="wrapper">
 
         <%= yield %>
