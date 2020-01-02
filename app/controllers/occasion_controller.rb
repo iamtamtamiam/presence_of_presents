@@ -12,6 +12,7 @@ class OccasionController < ApplicationController
 
 
   get '/occasions/new' do
+    redirect_if_not_logged_in
     erb :'/occasions/new'
   end
 
@@ -28,7 +29,7 @@ class OccasionController < ApplicationController
   get '/occasions/:id' do
     set_occasion_by_id
     redirect_if_not_logged_in
-      if authorized_to_edit?(@occasion)
+      if authorized_to_edit_occasion?(@occasion)
         @occasion_gifts = @occasion.gifts
         erb :'/occasions/show' #showing the wrong title with find_by why???!
       else
@@ -40,7 +41,7 @@ class OccasionController < ApplicationController
   get '/occasions/:id/edit' do
     set_occasion_by_id
     redirect_if_not_logged_in
-      if authorized_to_edit?(@occasion)
+      if authorized_to_edit_occasion?(@occasion)
         erb :'/occasions/edit'
       else
         flash[:error] = "You are not the authorized user to edit this occasion."
@@ -58,8 +59,13 @@ class OccasionController < ApplicationController
       #if @occasion = Occasion.find(params[:id]) && !params[:title].empty?
         #binding.pry
         set_occasion_by_id
-        @occasion.update(title: params[:title])
-        redirect "/occasions/#{@occasion.id}"
+        if !params[:title].empty?
+          @occasion.update(title: params[:title])
+          redirect "/occasions/#{@occasion.id}"
+        else
+          flash[:error] = "Occasion Title cannot be blank."
+          redirect :"occasions/#{@occasion.id}"
+        end
     #  else
         #add flash message unsuccessful
         #redirect :"occasions/#{@occasion.id}"
@@ -71,7 +77,7 @@ class OccasionController < ApplicationController
   delete '/occasions/:id' do
     set_occasion_by_id
     redirect_if_not_logged_in
-      if authorized_to_edit?(@occasion)
+      if authorized_to_edit_occasion?(@occasion)
         @occasion.destroy
         flash[:message] = "Delete Successful!"
         redirect '/occasions'
@@ -85,6 +91,10 @@ class OccasionController < ApplicationController
 
   def set_occasion_by_id
     @occasion = Occasion.find(params[:id])
+  end
+
+  def authorized_to_edit_occasion?(occasion_v)
+    occasion_v.user == current_user
   end
 
 end

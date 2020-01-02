@@ -9,6 +9,7 @@ class GiftController < ApplicationController
   end
 
   get '/gifts/new' do
+    redirect_if_not_logged_in
     erb :'/gifts/new'
   end
 
@@ -21,39 +22,67 @@ class GiftController < ApplicationController
     else
       redirect "/gifts/new"
     end
-
   end
 
 
   get '/gifts/:id' do
-    @gift = Gift.find(params[:id])
-    @occasion = @gift.occasion
-    erb :'gifts/show'
+    set_gift_by_id
+    redirect_if_not_logged_in #so they cant manipulate url
+      if authorized_to_edit_gift?(@gift)
+        @occasion = @gift.occasion
+        erb :'gifts/show'
+      else
+        flash[:error] = "You are not the authorized user to view this gift. Returning to your homepage."
+        redirect "/users/#{current_user.id}"
+      end
   end
 
   get '/gifts/:id/edit' do
-    @gift = Gift.find(params[:id])
-    erb :'/gifts/edit'
+    set_gift_by_id
+    redirect_if_not_logged_in
+      if authorized_to_edit_gift?(@gift)
+        erb :'/gifts/edit'
+      else
+        flash[:error] = "You are not the authorized user to edit this gift."
+        redirect "/gifts/#{@gift.id}"
+      end
   end
 
   patch '/gifts/:id' do #NOT WORKING!!! no update method? no get route?
     #if @gift = Gift.find(params[:id]) && !params[:name].empty?
-      @gift = Gift.find(params[:id])
+      set_gift_by_id
       if !params[:name].empty?
         @gift.update(name: params[:name], giver: params[:giver], category: params[:category], description: params[:description], occasion_id: params[:occasion_id])
         redirect "/gifts/#{@gift.id}"
       else
     #else
-      redirect :"/gifts/#{@gift.id}"
+        flash[:error] = "Gift Name cannot be blank."
+        redirect :"/gifts/#{@gift.id}"
       #add flash message
     end
   end
 
   delete '/gifts/:id' do
+    set_gift_by_id
+    redirect_if_not_logged_in
+    if authorized_to_edit_gift?(@gift)
+      @gift.destroy
+      flash[:message] = "Delete Successful!"
+      redirect '/gifts'
+    else
+      flash[:error] = "You are not the authorized user to delete this gift."
+      redirect :"/gifts/#{@gift.id}"
+    end
+  end
+
+  private
+
+  def set_gift_by_id
     @gift = Gift.find(params[:id])
-    @gift.destroy
-    #add flash message
-    redirect '/gifts'
+  end
+
+  def authorized_to_edit_gift?(gift_v)
+    gift_v.occasion.user == current_user
   end
 
 end

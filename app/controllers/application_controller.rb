@@ -33,8 +33,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  def authorized_to_edit?(model)
-    model.user == current_user
-  end
+
 
 end
