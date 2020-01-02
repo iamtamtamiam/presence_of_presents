@@ -28,7 +28,7 @@ class OccasionController < ApplicationController
   get '/occasions/:id' do
     set_occasion_by_id
     redirect_if_not_logged_in
-      if @occasion.user == current_user
+      if authorized_to_edit?(@occasion)
         @occasion_gifts = @occasion.gifts
         erb :'/occasions/show' #showing the wrong title with find_by why???!
       else
@@ -40,7 +40,7 @@ class OccasionController < ApplicationController
   get '/occasions/:id/edit' do
     set_occasion_by_id
     redirect_if_not_logged_in
-      if @occasion.user == current_user
+      if authorized_to_edit?(@occasion)
         erb :'/occasions/edit'
       else
         flash[:error] = "You are not the authorized user to edit this occasion."
@@ -71,7 +71,7 @@ class OccasionController < ApplicationController
   delete '/occasions/:id' do
     set_occasion_by_id
     redirect_if_not_logged_in
-      if @occasion.user == current_user
+      if authorized_to_edit?(@occasion)
         @occasion.destroy
         flash[:message] = "Delete Successful!"
         redirect '/occasions'
