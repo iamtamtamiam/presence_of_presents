@@ -1,17 +1,19 @@
-Add a new gift
+<h1>Add a New Gift</h1>
 
 <form action="/gifts" method="POST">
-  <label for="name">Gift Name:</label><input type="text" name="name">
-  <label for="giver">Who gave it to you?:</label><input type="text" name="giver">
-  <label for="category">Category of Gift:</label><input type="text" name="category">
-  <label for="description">Gift Description:</label><textarea name="description"></textarea>
+  <br><label for="name"><b>Gift Name: </b></label><input type="text" name="name">
+  <label for="giver"><b>Who gave it to you?: </b></label><input type="text" name="giver">
+  <br><label for="category"><b>Category of Gift: </b></label><input type="text" name="category">
+  <label for="description"><b>Gift Description: </b></label><textarea name="description"></textarea>
 
-  <label> Which Occasion does this gift belong in? </label>
+  <br><br><label> Which Occasion does this gift belong in? </label>
    <select name="occasion_id">
      <% current_user.occasions.each do |occasion| %>
        <option value=<%=occasion.id %>><%= occasion.title %></option>
      <% end %>
    </select>
 
-  <input type="submit" value="Create New Gift">
+  <br><br><input type="submit" value="Create New Gift">
 </form>
+
+<br> <a href="/occasions">Cancel - Go Back to All Occasions</a>

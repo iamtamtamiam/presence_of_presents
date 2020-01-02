@@ -1,19 +1,16 @@
-<br>this is <%=@gift.name%>'s (gift) show page</br>
+<br><h2><%=@gift.name.upcase%></h2></br>
 
-<label>Gift:</label><%= @gift.name %></br>
-<label>Giver:</label><%= @gift.giver %></br>
-<label>Category:</label><%= @gift.category %></br>
-<label>Description:</label><%= @gift.description %></br>
+<label><b>Gift: </b></label><%= @gift.name %></br>
+<label><b>Giver: </b></label><%= @gift.giver %></br>
+<label><b>Category: </b></label><%= @gift.category %></br>
+<label><b>Description: </b></label><%= @gift.description %></br>
 
+<br><br><h3>Gift Options:</h3></br>
+<a href="/gifts/<%=@gift.id%>/edit">Edit this Gift</a> | <a href="/occasions/<%=@gift.occasion_id%>">Back to <%=@gift.occasion.title%></a><br>
 
-<br><a href="/gifts/<%=@gift.id%>/edit">Edit this Gift</a></br>
-
-<h4> or </h4><br>
+  <br>OR<br><br>
 
 <form action="/gift/<%= @gift.id %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" name="" value="Delete This Gift">
 </form>
-
-
-<br><a href="/occasions/<%=@gift.occasion_id%>">Back to <%=@gift.occasion.title%></a> or <a href="/occasions">Back to All Occasions</a>
