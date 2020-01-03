@@ -28,9 +28,15 @@ Specs:
 - [X] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
       Used Rack-Flash gem to display errors
 - [X] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+      README.md added with license
 
 Confirm
-- [ ] You have a large number of small Git commits
-- [ ] Your commit messages are meaningful
-- [ ] You made the changes in a commit that relate to the commit message
-- [ ] You don't include changes in a commit that aren't related to the commit message
+- [X] You have a large number of small Git commits
+      Every 5-20 min
+- [X] Your commit messages are meaningful
+      comments on each step of every commit
+- [X] You made the changes in a commit that relate to the commit message
+      So that I could keep track myself in case my code started to break, I would be able to go back
+      Rather be safe than sorry
+- [X] You don't include changes in a commit that aren't related to the commit message
+      I confuse myself enough already

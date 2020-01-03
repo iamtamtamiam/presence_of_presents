@@ -1,8 +1,8 @@
-#Presence_of_Presents
+# Presence_of_Presents
 
 An app that allows users to appreaciate and keep track of occasions one has recieved gifts and what type of gifts (name, category, giver, description).
 
-#Installation
+## Installation
 
 run 'git clone git@github.com:iamtamtamiam/presence_of_presents.git' in your terminal.
 
@@ -12,18 +12,18 @@ run 'bundle install'
 
 run 'shotgun' to view app in your browser
 
-#Usage
+## Usage
 Create a User (or use seed data user)
 
 Users can add(create) occasions then add gifts to those occasions.
 
 Once logged in, a navigation bar will appear so users can have constant access to log out, go to thier home page, or view all of thier occasions.
 
-#Contributing
+## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'iamtamtamiam'/presence_of_presents. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-LICENSE
+## LICENSE
 Copyright <2020> <iamtamtamiam>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
