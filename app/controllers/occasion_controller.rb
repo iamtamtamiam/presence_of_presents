@@ -78,6 +78,7 @@ class OccasionController < ApplicationController
     set_occasion_by_id
     redirect_if_not_logged_in
       if authorized_to_edit_occasion?(@occasion)
+        @occasion.gifts.destroy_all
         @occasion.destroy
         flash[:message] = "Delete Successful!"
         redirect '/occasions'
