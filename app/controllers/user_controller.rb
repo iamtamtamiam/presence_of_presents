@@ -25,13 +25,14 @@ class UserController < ApplicationController
   end
 
   post '/users' do
-    if !params[:username].empty? && !params[:password].empty?
-      @user = User.create(:username => params[:username], :password => params[:password])
-      @user.save #do i need to save?
+    @user = User.new(:username => params[:username], :password => params[:password])
+    #if !params[:username].empty? && !params[:password].empty? #doesnt know where to redirect bc unique would be false
+    if @user.save
+      #@user = User.create(:username => params[:username], :password => params[:password])
       session[:user_id] = @user.id #actually logging them in
       redirect "/users/#{@user.id}"
     else
-      flash[:error] = "Signup Unsuccessful! Please make sure to enter a username and password."
+      flash[:error] = "Signup Unsuccessful! Please make sure to enter a username and password. or, Username may already be taken. Please try another username."
       redirect "/signup"
     end
   end
