@@ -39,7 +39,12 @@ class UserController < ApplicationController
 
   get '/users/:id' do
     @user = User.find(params[:id])
-    erb :'users/show'
+    if @user == current_user
+      erb :'users/show'
+    else
+      flash[:error] = "You are not the authorized to view another user."
+      redirect "/"
+    end
   end
 
   get '/logout' do
