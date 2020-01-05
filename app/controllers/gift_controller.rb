@@ -69,7 +69,7 @@ class GiftController < ApplicationController
     if authorized_to_edit_gift?(@gift)
       @gift.destroy
       flash[:message] = "Delete Successful!"
-      redirect '/gifts'
+      redirect '/occasions'
     else
       flash[:error] = "You are not the authorized user to delete this gift."
       redirect :"/gifts/#{@gift.id}"

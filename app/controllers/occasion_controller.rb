@@ -31,7 +31,7 @@ class OccasionController < ApplicationController
     redirect_if_not_logged_in
       if authorized_to_edit_occasion?(@occasion)
         @occasion_gifts = @occasion.gifts
-        erb :'/occasions/show' #showing the wrong title with find_by why???!
+        erb :'/occasions/show'
       else
         flash[:error] = "You are not the authorized user to view this occasion."
         redirect :"/occasions"
@@ -94,7 +94,7 @@ class OccasionController < ApplicationController
     @occasion = Occasion.find(params[:id])
   end
 
-  def authorized_to_edit_occasion?(occasion_v)
+  def authorized_to_edit_occasion?(occasion_v) #view and edit
     occasion_v.user == current_user
   end
 

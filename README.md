@@ -1,6 +1,6 @@
 # Presence_of_Presents
 
-An app that allows users to appreaciate and keep track of occasions one has recieved gifts and what type of gifts (name, category, giver, description).
+An app that allows users to appreciate and keep track of occasions one has received gifts and what type of gifts (name, category, giver, description).
 
 ## Installation
 
@@ -17,7 +17,7 @@ Create a User (or use seed data user)
 
 Users can add(create) occasions then add gifts to those occasions.
 
-Once logged in, a navigation bar will appear so users can have constant access to log out, go to thier home page, or view all of thier occasions.
+Once logged in, a navigation bar will appear so users can have constant access to log out, go to thier home page, or view all of their occasions.
 
 ## Contributing
 
