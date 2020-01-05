@@ -1,11 +1,8 @@
-#do i need to add authorization checks?
-#do i need a current_occasions methodS
-
+require 'rack-flash'
 class GiftController < ApplicationController
 
-  get '/gifts' do #do i actually need this method?
+  get '/gifts' do
     @user_occasions = current_user.occasions
-    #@gifts = Gift.all
     erb :'/gifts/index'
   end
 
@@ -15,7 +12,6 @@ class GiftController < ApplicationController
   end
 
   post '/gifts' do
-    #@gift = Gift.create(name: params[:name], giver: params[:giver], category: params[:category], description: params[:description], occasion_id: current_user.id)
     if !params[:name].empty?
       @gift = Gift.create(params)
       @gift.save
@@ -49,17 +45,16 @@ class GiftController < ApplicationController
       end
   end
 
-  patch '/gifts/:id' do #NOT WORKING!!! no update method? no get route?
-    #if @gift = Gift.find(params[:id]) && !params[:name].empty?
+  patch '/gifts/:id' do
       set_gift_by_id
       if !params[:name].empty?
         @gift.update(name: params[:name], giver: params[:giver], category: params[:category], description: params[:description], occasion_id: params[:occasion_id])
         redirect "/gifts/#{@gift.id}"
       else
-    #else
+
         flash[:error] = "Gift Name cannot be blank."
         redirect :"/gifts/#{@gift.id}"
-      #add flash message
+
     end
   end
 

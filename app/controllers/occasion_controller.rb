@@ -4,7 +4,6 @@ class OccasionController < ApplicationController
   use Rack::Flash
 
   get '/occasions' do
-    #may need authentication here
     @user = current_user
     @occasions = @user.occasions.all
     erb :'/occasions/index'
@@ -46,18 +45,11 @@ class OccasionController < ApplicationController
       else
         flash[:error] = "You are not the authorized user to edit this occasion."
         redirect :"occasions/#{@occasion.id}"
-        # :"users/#{current_user.id}"
-      end
 
-      #if not logged in,
-    ##need to add log in/sign up to home page
-      ##need flash message "not logged in"
+      end
   end
 
   patch '/occasions/:id' do
-    #if logged_in?
-      #if @occasion = Occasion.find(params[:id]) && !params[:title].empty?
-        #binding.pry
         set_occasion_by_id
         if !params[:title].empty?
           @occasion.update(title: params[:title])
@@ -66,12 +58,6 @@ class OccasionController < ApplicationController
           flash[:error] = "Occasion Title cannot be blank."
           redirect :"occasions/#{@occasion.id}"
         end
-    #  else
-        #add flash message unsuccessful
-        #redirect :"occasions/#{@occasion.id}"
-      #end
-      #redirect "/"
-    #end
   end
 
   delete '/occasions/:id' do
