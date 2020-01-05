@@ -6,7 +6,9 @@
 <label><b>Description: </b></label><%= @gift.description %></br>
 
 <br><br><h3>Gift Options:</h3></br>
-<a href="/gifts/<%=@gift.id%>/edit">Edit this Gift</a> | <a href="/occasions/<%=@gift.occasion_id%>">Back to <%=@gift.occasion.title%></a><br>
+<a href="/gifts/<%=@gift.id%>/edit">Edit this Gift</a> |
+<a href="/gifts">Go To All Gifts</a> |
+<a href="/occasions/<%=@gift.occasion_id%>">Go To <%=@gift.occasion.title%></a> <br>
 
   <br>OR<br><br>
 
