@@ -1,18 +1,17 @@
 
-<br>Gift index page</br>
-
-Number of reasons to be thankful:
-
-  <%@user.occasions.each do |o|%>
-      <%@all_gifts = []%>
-      <%@all_gifts << o.gifts%>
-      <%=@all_gifts.count%> <br>
 
 
-
-
-
-
+<br><h1>Number of reasons to be thankful:</h1><br>
+<%@all_gifts = []%>
+  <%@user_occasions.each do |o|%>
+        <%o.gifts.each do |gift|%>
+          <%@all_gifts << gift%>
+        <%end%>
   <%end%>
+<br><p style="font-size: 700%; color: blue; text-align:center; "><%=@all_gifts.count%></p><br>
 
-<br>still showing everyone's gift...not user or occasion specific
+<%@all_gifts.each do |gift|%>
+  <ul style="list-style-type:circle;">
+    <li><a href="/gifts/<%=gift.id%>"><%=gift.name%></a></li>
+  </ul>
+<%end%>
