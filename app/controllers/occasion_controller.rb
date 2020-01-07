@@ -26,7 +26,9 @@ class OccasionController < ApplicationController
   end
 
   get '/occasions/:id' do
-    set_occasion_by_id
+    redirect_if_object_does_not_exist(method(:set_occasion_by_id))
+    #set_occasion_by_id
+    #redirect_if_object_does_not_exist
     redirect_if_not_logged_in
       if authorized_to_edit_occasion?(@occasion)
         @occasion_gifts = @occasion.gifts

@@ -23,7 +23,8 @@ class GiftController < ApplicationController
 
 
   get '/gifts/:id' do
-    set_gift_by_id
+    #set_gift_by_id
+    redirect_if_object_does_not_exist(method(:set_gift_by_id))
     redirect_if_not_logged_in #so they cant manipulate url
       if authorized_to_edit_gift?(@gift)
         @occasion = @gift.occasion
