@@ -4,7 +4,12 @@ class UserController < ApplicationController
   use Rack::Flash
 
   get '/login' do
-    erb :login
+    if logged_in?
+      flash[:error] = "You are already logged in. If you wish to log out, click 'Logout' below."
+      redirect "/users/#{current_user.id}"
+    else
+      erb :login
+    end
   end
 
   post '/login' do
@@ -21,7 +26,12 @@ class UserController < ApplicationController
   end
 
   get '/signup' do
-    erb :signup
+    if logged_in?
+      flash[:error] = "You are already logged in. If you wish to log out, click 'Logout' below."
+      redirect "/users/#{current_user.id}"
+    else
+      erb :signup
+    end
   end
 
   post '/users' do

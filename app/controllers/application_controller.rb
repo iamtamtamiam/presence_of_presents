@@ -33,12 +33,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  def redirect_if_object_does_not_exist
-    if ActiveRecord::RecordNotFound
-        flash[:error] = "You are not authorized to view this page."
-        redirect '/'
-    end
-  end
 
   def redirect_if_object_does_not_exist(defined)
     begin
