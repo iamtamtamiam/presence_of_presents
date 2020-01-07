@@ -48,6 +48,7 @@ class UserController < ApplicationController
   end
 
   get '/users/:id' do
+    redirect_if_object_does_not_exist(method(:set_user_by_id))
     @user = User.find(params[:id])
     if @user == current_user
       erb :'users/show'
@@ -60,6 +61,12 @@ class UserController < ApplicationController
   get '/logout' do
     session.clear
     redirect '/'
+  end
+
+  private
+
+  def set_user_by_id
+    @user = User.find(params[:id])
   end
 
 end
