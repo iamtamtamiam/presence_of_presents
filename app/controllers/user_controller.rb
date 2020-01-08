@@ -1,4 +1,4 @@
-require 'rack-flash'
+
 
 class UserController < ApplicationController
   use Rack::Flash
@@ -49,7 +49,7 @@ class UserController < ApplicationController
 
   get '/users/:id' do
     redirect_if_object_does_not_exist(method(:set_user_by_id))
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     if @user == current_user
       erb :'users/show'
     else

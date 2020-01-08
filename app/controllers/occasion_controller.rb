@@ -1,4 +1,3 @@
-require 'rack-flash'
 
 class OccasionController < ApplicationController
   use Rack::Flash

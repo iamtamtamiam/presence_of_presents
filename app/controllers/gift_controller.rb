@@ -1,6 +1,8 @@
 require 'rack-flash'
 class GiftController < ApplicationController
 
+use Rack::Flash
+
   get '/gifts' do
     @user_occasions = current_user.occasions
     erb :'/gifts/index'
