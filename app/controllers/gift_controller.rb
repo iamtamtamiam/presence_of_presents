@@ -19,6 +19,7 @@ use Rack::Flash
       @gift.save
       redirect "/gifts/#{@gift.id}"
     else
+      flash[:error] = "Gift Name cannot be blank."
       redirect "/gifts/new"
     end
   end

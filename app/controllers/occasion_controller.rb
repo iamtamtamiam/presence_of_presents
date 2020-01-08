@@ -20,6 +20,7 @@ class OccasionController < ApplicationController
       @occasion.save
       redirect "/occasions/#{@occasion.id}"
     else
+      flash[:error] = "Occasion Title cannot be blank."
       redirect "/occasions/new"
     end
   end
